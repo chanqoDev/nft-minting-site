@@ -1,10 +1,14 @@
+body {
+  font-family: BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
+}
+
 .App {
  height: 100vh;
  background-color: black;
  display: flex;
  justify-content: center;
  align-items: center;
- background-color: yellow;
+ background-color: transparent;
 }
 
 .main {
@@ -16,20 +20,89 @@
   display: flex;
   flex-direction: column;
 }
- 
 .mintingSection {
 display: flex;
 color: white; 
 flex-grow: 1; 
 /* this will allow the footer to be in the bottom */
 }  
-
-.left {
- width: 50%;
+video {
+  object-fit: contain;
 }
+.left {
+width: 50%;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.minting-Btn {
+cursor: pointer;
+font-weight: 600;
+padding: 15px 40px;
+text-transform: uppercase;
+transition: all .2s ease-in-out;
+border: none;
+border-radius: 25px;
+background-color: #fff;
+color: black;
+}
+button {
+    outline: 1px solid #da8301!important;
+}
+ button:hover {
+    -webkit-box-shadow: 0 0 1rem rgb(0 0 0 / 60%);
+    box-shadow: 0 0 1rem rgb(0 0 0 / 60%);
+} 
+ 
+.minting-Btn:hover {
+    background-color: #0d9ed8;
+    color: #fff;
+}
+.backgroundvideo {
+    bottom: 0;
+    left: 0;
+    min-height: 100%;
+    min-width: 100%;
+    object-fit: cover;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: -1;  
+}
+/* video {    width: 500px;
+    aspect-ratio: auto 500 / 300;
+    height: 300px;
+} */
+
+.actions {
+display: flex;
+gap: 20px;
+}
+
 .right {
 width: 50%;
-}  
+color: #fff;
+display: flex;
+flex: 1 1;
+flex-direction: column;
+gap: 20px;
+justify-content: center;
+padding-right: 20px;
+}
+
+.info-text {
+      color: #999;
+    font-size: 18px;
+}
+h2 {
+    font-size: 30px;
+    margin: 0;
+}
+
+
+
+
 .footer {
 background-color: #1817dd;
 color: #f5def5; 

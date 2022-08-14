@@ -1,9 +1,19 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
+      <video
+        class="backgroundvideo"
+        src="https://static.videezy.com/system/resources/previews/000/043/267/original/4K_14.mp4"
+        width="500"
+        height="300"
+        autoPlay
+        muted
+        playsInline
+        loop
+      ></video>
       <div className="main">
         <div className="mintingSection">
           <div className="left">
@@ -16,9 +26,11 @@ function App() {
             </video>
           </div>
           <div className="right">
-            <h2> ADDIDAS: INTO THE METAVERSE </h2>
-            <div>12 minted / 200</div>
-            <div>CONNECT WALLET</div>
+            <h2> Addicted: Into the Metaworse </h2>
+            <div className="info-text">21 minted / 420</div>
+            <div className="actions">
+              <div className="minting-Btn">CONNECT WALLET</div>
+            </div>
           </div>
         </div>
         <div className="footer">MINTING NOW!</div>
