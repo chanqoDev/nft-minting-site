@@ -23,8 +23,9 @@ function App() {
     await logout();
   };
   const [totalSupply, setTotalSupply] = useState(0);
-  const [inProgress, setInProgress] = useState(true);
+  const [inProgress, setInProgress] = useState(false);
   const [completed, setCompleted] = useState(false);
+  const [hash, setHash] = useState();
 
   useEffect(() => {
     const getSupply = async () => {
@@ -36,6 +37,12 @@ function App() {
     getSupply();
   }, [isAuthenticated]);
 
+  const checkEtherScan = () => {
+    if (!hash) return;
+    const url = `https://rinkeby.etherscan.io/tx/${hash}`;
+    window.open(url, '_blank');
+  };
+
   const mint = async () => {
     const sendOptions = {
       contractAddress: '0xeB510b6a149d9e18094dc7bAD1714d27eCC3B17a',
@@ -45,9 +52,10 @@ function App() {
     };
     const transaction = await Moralis.executeFunction(sendOptions);
     setInProgress(true);
+    setHash(transaction.hash);
 
     // Wait until the transaction is confirmed
-    await transaction.wait(); // its stuck until it returns the value, then once confirmed
+    await transaction.wait(); // will wait until it returns the value, then once confirmed
     setInProgress(false);
     setCompleted(true);
   };
@@ -81,7 +89,7 @@ function App() {
   const getState = () => {
     if (isAuthenticated) {
       if (inProgress) {
-        return <InProgressMinting />;
+        return <InProgressMinting checkEtherscan={checkEtherScan} />;
       }
       if (completed) {
         return <CompletedMinting />;
