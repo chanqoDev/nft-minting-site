@@ -3,9 +3,11 @@ import './App.css';
 import { useMoralis } from 'react-moralis';
 import { useState, useEffect } from 'react';
 import abi from './contract/contract.json';
+import StartMinting from './components/StartMinting';
+import InProgressMinting from './components/InProgressMinting';
+import CompletedMinting from './components/CompletedMinting';
 
 function App() {
-  const [totalSupply, setTotalSupply] = useState(0);
   const {
     Moralis,
     enableWeb3,
@@ -20,6 +22,9 @@ function App() {
   const logOut = async () => {
     await logout();
   };
+  const [totalSupply, setTotalSupply] = useState(0);
+  const [inProgress, setInProgress] = useState(true);
+  const [completed, setCompleted] = useState(false);
 
   useEffect(() => {
     const getSupply = async () => {
@@ -38,8 +43,13 @@ function App() {
       abi: abi,
       msgValue: Moralis.Units.ETH('0.01'),
     };
-    // add ether to in sendOption for MOralis
     const transaction = await Moralis.executeFunction(sendOptions);
+    setInProgress(true);
+
+    // Wait until the transaction is confirmed
+    await transaction.wait(); // its stuck until it returns the value, then once confirmed
+    setInProgress(false);
+    setCompleted(true);
   };
 
   // Create a function to get total Supply of our NFT
@@ -65,6 +75,35 @@ function App() {
         .catch(function (error) {
           console.log(error);
         });
+    }
+  };
+
+  const getState = () => {
+    if (isAuthenticated) {
+      if (inProgress) {
+        return <InProgressMinting />;
+      }
+      if (completed) {
+        return <CompletedMinting />;
+      }
+
+      return (
+        <StartMinting mint={mint} logOut={logOut} />
+        // <div className="mintStart">
+        //   <div onClick={mint} className="wallet-btn">
+        //     MINT
+        //   </div>
+        //   <div onClick={logOut} className="wallet-btn">
+        //     START OVER
+        //   </div>
+        // </div>
+      );
+    } else {
+      return (
+        <div onClick={login} className="wallet-btn">
+          CONNECT WALLET
+        </div>
+      );
     }
   };
 
@@ -94,10 +133,11 @@ function App() {
             </video>
           </div>
           <div className="right">
-            <h2> Addicted: Into the Metaworse </h2>
-            <div className="info-text">{totalSupply} minted / 420</div>
+            <h2> ADDIDERS: Into the Metaverse </h2>
+            <div className="info-text">{totalSupply} minted / 404</div>
             <div className="actions">
-              {isAuthenticated ? (
+              {getState()}
+              {/* {isAuthenticated ? (
                 <div className="mintStart">
                   <div onClick={mint} className="wallet-btn">
                     MINT
@@ -110,7 +150,7 @@ function App() {
                 <div onClick={login} className="wallet-btn">
                   CONNECT WALLET
                 </div>
-              )}
+              )} */}
             </div>
           </div>
         </div>
