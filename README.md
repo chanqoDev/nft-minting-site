@@ -1,20 +1,14 @@
 Watch it live HERE: https://incredible-bombolone-4d6e07.netlify.app/
 
-A React Application will display the NFT(ERC-271 and allow user to connect Metamask account using Moralis API, then user will be authenticated there Metamask wallet and will be able to mint the nft that is being fetch from the OpenSea TestNets and once minted it will be deployed on the Etherum blockchain. 
- 
+A React Application will display the NFT(ERC-271 and allow the user to connect Metamask account using Moralis API, then the user will be authenticated their Metamask wallet and will be able to mint the NFT that is being fetched from the OpenSea TestNets, and once minted it will be deployed on the Ethereum blockchain.
 
-We create a smart contract using Solidity. 
-https://solidity-by-example.org/
+We create a smart contract using Solidity. https://solidity-by-example.org/
 
-host/store our media files in a pinata ipfs for our NFTS. 
-https://docs.pinata.cloud/nfts
+host/store our media files in a pinata ipfs for our NFTS. https://docs.pinata.cloud/nfts
 
-For our Authentication and connecting our metamask wallets 
-https://docs.moralis.io/docs/moralis-sdk-setup
+For our Authentication and connecting our Metamask wallets https://docs.moralis.io/docs/moralis-sdk-setup
 
-DEPLOY & RUN TRANSACTIONS IN THE BLOCKCHAIN REMIX IDE  (Remix IDE allows developing, deploying and administering smart contracts for Ethereum like blockchains) 
-https://remix-project.org/
-
+DEPLOY & RUN TRANSACTIONS IN THE BLOCKCHAIN REMIX IDE (Remix IDE allows developing, deploying and administering smart contracts for Ethereum-like blockchains) https://remix-project.org/
 
 Here how to install : 
 
